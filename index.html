@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylecss">
+    <title>Consumindo API</title>
+    <script>
+      async function somar() {
+        let n1 = document.getElementById("txtnum1").value;
+        let n2 = document.getElementById("txtnum2").value;
+
+        let url = `http://localhost:5001/calculadora/somar/${n1}/${n2}`;
+
+        let response = await fetch(url);
+        let dados = await response.json();
+
+        document.getElementById("res").innerText = String(dados.soma);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Consumindo API</h1>
+    <hr />
+
+    <h2>Calculadora</h2>
+
+    <div class="form">
+      <div>
+        <label>Numero 01:</label>
+        <input type="text" id="txtnum1" />
+
+        <label>Numero 02:</label>
+        <input type="text" id="txtnum2" />
+      </div>
+
+      <div class="btn">
+        <label>&nbsp;</label>
+        <button onclick="somar()">Somar</button>
+      </div>
+
+      <div id="res">0</div>
+    </div>
+  </body>
+</html>
